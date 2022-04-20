@@ -23,6 +23,10 @@ public class UI {
         cb.displayBoard();
         System.out.println(cb.players[0].getName());
     }
+    
+    //REQUIRES: nothing
+    //MODIFIES: nothing
+    //EFFECTS:  returns an array of two players, w/ white at players[0] and black at players[1]
     public Player[] createPlayers(){
         Scanner scan = new Scanner(System.in);
 
@@ -40,6 +44,10 @@ public class UI {
 
         return players;
     }
+    
+    //REQUIRES: String color
+    //MODIFIES: nothing
+    //EFFECTS:  nothing
     public void getMove(String color) {
         Scanner scan = new Scanner(System.in);
         System.out.println(color + "'s move (ex: A5 B2): ");
