@@ -16,7 +16,6 @@ public class UI {
     }
 
     //methods
-
     public void menu() {
         System.out.println();
         System.out.println(cb.players[1].getName());
@@ -48,15 +47,12 @@ public class UI {
     //REQUIRES: String color
     //MODIFIES: nothing
     //EFFECTS:  nothing
-    public void getMove(String color) {
+    public String[] getMove(String color) {
         Scanner scan = new Scanner(System.in);
         System.out.println(color + "'s move (ex: A5 B2): ");
         String m1 = scan.next();
         String m2 = scan.next();
-
         String[] move = {m1, m2};
-        int[] ogidx = cb.toNumIndex(m1);
-        int[] endidx = cb.toNumIndex(m2);
-
+        return move;
     }
 }

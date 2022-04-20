@@ -9,8 +9,7 @@ public abstract class ChessPiece {
 	private boolean captured;
     private String colour;
     private String name;
-    private int x;
-    private int y;
+    private int moveCount;
 
     //constructor
     ChessPiece(String colour, String name, ChessBoard cb) {
@@ -18,6 +17,7 @@ public abstract class ChessPiece {
         this.colour = colour;
         this.name = name;
         this.captured = false;
+        this.moveCount = 0;
     }
         
     //methods
@@ -29,18 +29,6 @@ public abstract class ChessPiece {
     }
     public void setName(String name) {
         this.name = name;
-    }
-    public int getX() {
-        return x;
-    }
-    public void setX(char x) {
-        this.x = x;
-    }
-    public int getY() {
-        return y;
-    }
-    public void setY(int y) {
-        this.y = y;
     }
     public String getColour() {
         return colour;
@@ -54,4 +42,11 @@ public abstract class ChessPiece {
     public void setCaptured(Boolean captured) {
     	this.captured = captured;
     }
+    public void setMoveCount(int mc){
+        this.moveCount = mc;
+    }
+    public int getMoveCount(){
+        return moveCount;
+    }
+
 }

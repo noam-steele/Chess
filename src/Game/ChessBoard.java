@@ -15,10 +15,12 @@ public class ChessBoard {
     public ChessBoard(Player white, Player black) {
         players = new Player[2];
         CB = new ChessPiece[8][8];
+        setChessBoard();
         this.players[0] = white;
         this.players[1] = black;
 
     }
+
     public void setChessBoard() {
         String b = "black";
         String w = "white";
@@ -99,6 +101,68 @@ public class ChessBoard {
 		}
     return idx;
     }
-    
+    public ChessPiece[][] movePiece(String[] stringMove){
+        //translate string index to numerical index
+        int[] ogIdx = toNumIndex(stringMove[0]);
+        int[] destIdx = toNumIndex(stringMove[1]);
+
+        //check piece type and call helper method
+        ChessPiece[][] curr;
+        if (getPiece(ogIdx) instanceof Pawn) {
+            curr = movePawn(ogIdx, destIdx);
+        } else if (getPiece(ogIdx) instanceof Rook){
+
+        } else if (getPiece(ogIdx) instanceof Knight){
+
+        } else if (getPiece(ogIdx) instanceof Bishop) {
+
+        } else if (getPiece(ogIdx) instanceof Queen) {
+
+        } else if (getPiece(ogIdx) instanceof King) {
+
+        }
+        return null;
+    }
+
+    private ChessPiece[][] movePawn(int[] ogIdx, int[] destIdx) {
+        ChessPiece cp = getPiece(ogIdx);
+        boolean valid = false;
+        //if piece is white
+        if (cp.getColour().equals("white")){
+            //if pawn has not moved
+            if (cp.getMoveCount() == 0) {
+                //pawn can move straight forward one or two spaces
+                if (destIdx[1] == ogIdx[1] && (destIdx[0] == ogIdx[0]+1 || destIdx[0] == ogIdx[0]+2)){
+                    //route to destination must be empty
+                    for(int i = ogIdx[0]; i <= destIdx[0]; i++) {
+                        if (CB[destIdx[1]][i] != null){
+                            valid = true;
+                        }
+                    }
+                }
+            //if pawn has moved
+            } else {
+                //pawn can move forward one spot if the spot is empty
+                if (destIdx[1] == ogIdx[1] && destIdx[0] == ogIdx[0]+1 && CB[ogIdx[1]][ogIdx[0] + 1] == null){
+                    valid = true;
+                //pawn can move forward diagonally one spot if the spot is not empty
+                } else if ((destIdx[1] == ogIdx[1]+1 || destIdx[1] == ogIdx[1]-1) && (destIdx[0] == ogIdx[0]+1) && CB[destIdx[1]][destIdx[0]].getColour().equals("black")){
+                    valid = true;
+                }
+            }
+        //if piece is black
+        } else{
+
+        }
+
+
+        if (valid == true){
+            CB[destIdx[1]][destIdx[0]] = cp;
+            CB[ogIdx[1]][ogIdx[0]] = null;
+        } else {
+            System.out.println("Invalid move");
+        }
+        return null;
+    }
 
 }
