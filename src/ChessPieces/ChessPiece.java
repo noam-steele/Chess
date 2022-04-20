@@ -1,38 +1,46 @@
 package ChessPieces;
 
 
-public abstract class ChessPiece{
+import Game.ChessBoard;
+
+public abstract class ChessPiece {
     //attributes
+    private ChessBoard cb;
 	private boolean captured;
     private String colour;
     private String name;
-    private char X;
-    private int Y;
+    private int x;
+    private int y;
 
     //constructor
-    ChessPiece(String colour, String name) {
+    ChessPiece(String colour, String name, ChessBoard cb) {
+        this.cb = cb;
         this.colour = colour;
         this.name = name;
         this.captured = false;
     }
+        
     //methods
+    public abstract ChessBoard checkValidity(int [] A1);
+
+    //setters and getters
     public String getName() {
         return name;
     }
     public void setName(String name) {
         this.name = name;
     }
-    public char getX() {
-        return X;
+    public int getX() {
+        return x;
     }
     public void setX(char x) {
-        X = x;
+        this.x = x;
     }
     public int getY() {
-        return Y;
+        return y;
     }
     public void setY(int y) {
-        Y = y;
+        this.y = y;
     }
     public String getColour() {
         return colour;
