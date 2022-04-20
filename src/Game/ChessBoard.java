@@ -10,9 +10,13 @@ public class ChessBoard {
 
     //attributes
     public ChessPiece[][] CB;
+    public Player[] players;
     //constructor
     public ChessBoard(Player white, Player black) {
+        players = new Player[2];
         CB = new ChessPiece[8][8];
+        this.players[0] = white;
+        this.players[1] = black;
 
     }
     public void setChessBoard() {
@@ -64,7 +68,7 @@ public class ChessBoard {
 	public ChessPiece getPiece(int[] idx) {
 		return CB[ idx[0] ][ idx[1] ];
 	}
-	private int[] toNumIndex(String cIndex) {
+	public int[] toNumIndex(String cIndex) {
 			int x = 0;
 			if (cIndex.charAt(0) == 'B')
 				x =1;

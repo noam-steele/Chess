@@ -7,7 +7,7 @@ public class Player {
 	private String colour;
 	
 	//constructor
-	Player(String name, String colour){
+	public Player(String name, String colour){
 		this.name = name;
 		this.colour = colour;
 	}

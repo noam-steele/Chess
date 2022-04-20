@@ -10,26 +10,36 @@ public class UI {
     ChessBoard cb;
     //constructor
     public UI() {
-        cb = new ChessBoard();
+        Player[] players = createPlayers();
+        cb = new ChessBoard(players[0], players[1]);
         menu();
     }
 
     //methods
 
     public void menu() {
-        Scanner scan = new Scanner(System.in);
-        System.out.println("Enter Player 1: ");
-        String p1Name = scan.nextLine();
-        Player black = new Player(p1Name, "Black");
-        System.out.println("Enter Player 2: ");
-        String p2Name = scan.nextLine();
-        Player white = new Player(p2Name, "White");
-        System.out.println(p1Name);
-        cb.displayBoard();
-        System.out.println(p2Name);
         System.out.println();
+        System.out.println(cb.players[1].getName());
+        cb.displayBoard();
+        System.out.println(cb.players[0].getName());
     }
+    public Player[] createPlayers(){
+        Scanner scan = new Scanner(System.in);
 
+        Player[] players = new Player[2];
+
+        System.out.println("Enter player 1: ");
+        String p1 = scan.nextLine();
+        Player white = new Player(p1, "White");
+        players[0] = white;
+
+        System.out.println("Enter player 2: ");
+        String p2 = scan.nextLine();
+        Player black = new Player(p2, "Black");
+        players[1] = black;
+
+        return players;
+    }
     public void getMove(String color) {
         Scanner scan = new Scanner(System.in);
         System.out.println(color + "'s move (ex: A5 B2): ");
