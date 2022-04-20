@@ -2,32 +2,36 @@ package Game;
 
 import ChessPieces.*;
 
+import java.util.ArrayList;
+import java.util.Scanner;
 
-public class ChessBoard implements PieceMovement{
+
+public class ChessBoard {
 
     //attributes
     public ChessPiece[][] CB;
     //constructor
-    ChessBoard() {
+    public ChessBoard(Player white, Player black) {
         CB = new ChessPiece[8][8];
+
     }
     public void setChessBoard() {
         String b = "black";
         String w = "white";
-        CB[0][0] = CB[0][7] = new Rook(b);
-        CB[0][1] = CB[0][6] = new Knight(b);
-        CB[0][2] = CB[0][5] = new Bishop(b);
-        CB[0][3] = new Queen(b);
-        CB[0][4] = new King(b);
+        CB[0][0] = CB[0][7] = new Rook(b, this);
+        CB[0][1] = CB[0][6] = new Knight(b, this);
+        CB[0][2] = CB[0][5] = new Bishop(b, this);
+        CB[0][3] = new Queen(b, this);
+        CB[0][4] = new King(b, this);
         for(int i = 0; i < CB.length; i++){
-            CB[1][i] = new Pawn(b);
-            CB[6][i] = new Pawn(w);
+            CB[1][i] = new Pawn(b, this);
+            CB[6][i] = new Pawn(w, this);
         }
-        CB[7][0] = CB[7][7] = new Rook(w);
-        CB[7][1] = CB[7][6] = new Knight(w);
-        CB[7][2] = CB[7][5] = new Bishop(w);
-        CB[7][3] = new King(w);
-        CB[7][4] = new Queen(w);
+        CB[7][0] = CB[7][7] = new Rook(w, this);
+        CB[7][1] = CB[7][6] = new Knight(w, this);
+        CB[7][2] = CB[7][5] = new Bishop(w, this);
+        CB[7][3] = new King(w, this);
+        CB[7][4] = new Queen(w, this);
 
     }
     public void displayBoard(){
@@ -91,30 +95,6 @@ public class ChessBoard implements PieceMovement{
 		}
     return idx;
     }
+    
 
-	@Override
-	public ChessBoard movePiece(ChessBoard cb, String cIndex, String dIndex) {
-		ChessPiece piece = getPiece(toNumIndex(cIndex));
-		Boolean valid = checkValidity(cb,  toNumIndex(cIndex), toNumIndex(dIndex));
-		return cb;
-	}
-	@Override
-	public Boolean checkValidity(ChessBoard cb, int[] cIndex, int[] dIndex) {
-		Boolean valid = false;
-		ChessPiece piece = getPiece(cIndex);
-		if (piece instanceof Pawn) {
-		
-		} else if (piece instanceof Rook) {
-			
-		} else if (piece instanceof Knight) {
-			
-		} else if (piece instanceof Bishop) {
-			
-		} else if (piece instanceof Queen) {
-			
-		} else if (piece instanceof King) {
-		}
-		return valid;
-	
-	}
 }
